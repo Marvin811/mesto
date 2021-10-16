@@ -1,0 +1,7 @@
+.profile {
+  width: 880px;
+  height: 120px;
+  position: relative;
+  margin: 0 auto 51px;
+  border: 1px solid red;
+}
