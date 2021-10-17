@@ -4,4 +4,6 @@
   position: relative;
   margin: 0 auto 51px;
   border: 1px solid red;
+  display: flex;
+  align-items: center;
 }
