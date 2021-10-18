@@ -1,4 +1,4 @@
-.element__title {
+.elements__heading {
   color: black;
   margin: 0;
   padding: 0;
@@ -9,6 +9,7 @@
   line-height: 29px;
   text-overflow: ellipsis;
   overflow: hidden;
-  grid-area:inherit;
-  width: 200px;
+  grid-area: inherit;
+  width: 100%;
+  max-width: 235px;
 }
