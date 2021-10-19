@@ -2,6 +2,10 @@
   margin: 0 auto;
   max-width: 1280px;
   width: 100%;
-  min-width: 320px;
   min-height: 100vh;
+}
+@media screen and (max-width: 767px) {
+  .header {
+    max-width: 320px;
+  }
 }

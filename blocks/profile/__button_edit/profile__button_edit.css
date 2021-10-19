@@ -6,4 +6,12 @@
   margin: 0;
   grid-column: 2;
   grid-row: 1;
+  align-self: center;
+  
+}
+@media screen and (max-width: 767px) {
+  .profile__button_edit {
+    width: 18px;
+    height: 18px;
+  }
 }
