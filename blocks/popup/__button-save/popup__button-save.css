@@ -9,9 +9,8 @@
   line-height: 22px;
   text-align: center;
   padding: 14px 0 18px;
-  
 }
-@media screen and (max-width: 559px) {
+@media screen and (max-width: 767px) {
   .popup__button-save {
     font-size: 14px;
     line-height: 17px;

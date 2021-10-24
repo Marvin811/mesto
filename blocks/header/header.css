@@ -1,9 +1,9 @@
 .header {
   width: 880px;
   height: 74px;
-  margin: 45px auto 41px;
+  margin: 45px 0 41px;
+  margin: 0 auto;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
-  position: relative;
 }
 @media screen and (max-width: 767px) {
   .header {
