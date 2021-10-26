@@ -19,10 +19,10 @@ const closePopupByClickOnOverlay = function (event) {
  * Функция, которая «переключает» состояние всплывающего окошка
  */
 const openPopup = function () {
-  popupElement.classList.add("popup_opened");
+  popupElement.classList.add("popup_is-opened");
 };
 const closePopup = function () {
-  popupElement.classList.remove("popup_opened");
+  popupElement.classList.remove("popup_is-opened");
 };
 const activeLike = function () {
   likeActiveElement.classList.add(".elements__like-button_active");
