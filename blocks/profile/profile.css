@@ -1,7 +1,5 @@
 .profile {
   width: 880px;
-  height: 120px;
-  position: relative;
   margin: 0 auto 51px;
   display: flex;
   align-items: center;
@@ -9,7 +7,6 @@
 @media screen and (max-width: 767px) {
   .profile {
     width: 282px;
-    height: 286px;
     margin-bottom: 26px;
     flex-direction: column;
   }
