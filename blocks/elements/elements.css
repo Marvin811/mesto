@@ -2,8 +2,13 @@
   width: 880px;
   margin: 0 auto 67px;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  column-gap: 17px;
+  row-gap: 20px;
+  justify-self: center;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 879px) {
   .elements {
     width: 282px;
     margin: 0 auto 48px;

@@ -5,7 +5,7 @@
   grid-column-gap: 18px;
   grid-row-gap: 16px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 879px) {
   .profile__info {
     padding: 26px 19px 32px;
     grid-column-gap: 10px;

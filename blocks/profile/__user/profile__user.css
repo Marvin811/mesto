@@ -7,13 +7,15 @@
   font-size: 42px;
   line-height: 56px;
   text-overflow: ellipsis;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 879px) {
   .profile__user {
-    align-items: center;
     line-height: 121%;
     font-size: 27px;
+    max-width: 189px;
   }
 }
