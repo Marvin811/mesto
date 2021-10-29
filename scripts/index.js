@@ -4,25 +4,21 @@ const popupOpenButtonElement = document.querySelector(".profile__edit-button");
 let nameProfile = document.querySelector(".profile__user");
 let jobProfile = document.querySelector(".profile__author");
 const formElement = popupElement.querySelector('.popup__form');
-let nameInput = popupElement.querySelector('input[name="popup__name"]');
-let jobInput = popupElement.querySelector('input[name="popup__job"]');
+let nameInput = popupElement.querySelector('input[name="name"]');
+let jobInput = popupElement.querySelector('input[name="job"]');
 
 function openPopup() {
   popupElement.classList.add('popup_is-opened');
-  if (nameInput.value !== nameProfile.textContent && jobInput.value !== jobProfile.textContent) {
     nameInput.value = nameProfile.textContent;
     jobInput.value = jobProfile.textContent;
-  }
 }
 function closePopup() {
   popupElement.classList.remove('popup_is-opened');
 }
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  nameInput = popupElement.querySelector('input[name="popup__name"]').value;
-
-  jobInput = popupElement.querySelector('input[name="popup__job"]').value;
-
+  nameInput = popupElement.querySelector('input[name="name"]').value;
+  jobInput = popupElement.querySelector('input[name="job"]').value;
   nameProfile.textContent = nameInput;
   jobProfile.textContent = jobInput;
   closePopup()

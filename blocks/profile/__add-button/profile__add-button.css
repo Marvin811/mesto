@@ -4,7 +4,7 @@
   background-image: url(../../../images/Add__Button.svg);
   justify-self: flex-end;
   margin-left: auto;
-  border: 2px solid wheat;
+  border: 2px solid white;
   border-radius: 2px;
 }
 @media screen and (max-width: 879px) {

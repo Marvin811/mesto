@@ -10,6 +10,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  max-width: 920px;
 }
 @media screen and (max-width: 879px) {
   .profile__user {
