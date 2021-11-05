@@ -4,7 +4,7 @@
   padding: 0;
   grid-column-gap: 18px;
   grid-row-gap: 16px;
-  width: 336px;
+  max-width: 336px;
   overflow: hidden;
 }
 @media screen and (max-width: 879px) {
@@ -12,7 +12,7 @@
     padding: 26px 19px 32px;
     grid-column-gap: 10px;
     grid-row-gap: 7px;
-    width: 282px;
+    max-width: 282px;
     margin: 0 auto;
   }
 }
