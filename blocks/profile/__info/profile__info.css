@@ -5,7 +5,6 @@
   grid-column-gap: 18px;
   grid-row-gap: 16px;
   max-width: 336px;
-  overflow: hidden;
 }
 @media screen and (max-width: 879px) {
   .profile__info {

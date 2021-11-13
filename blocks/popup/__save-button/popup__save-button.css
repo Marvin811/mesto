@@ -8,18 +8,16 @@
   background: black;
   color: white;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
   cursor: pointer;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 15px 0 0;
 }
 
-@media (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .popup__save-button {
-    max-height: 50px;
-    max-width: 358px;
-    margin-top: 20px;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 
