@@ -7,87 +7,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
     <link rel="icon" type="image/ico" href="./images/icon.ico">
+    <script src="./scripts/index.js" defer></script>
     <title>mesto</title>
 </head>
 
 <body class="page">
-    <div class="page__container">
-        <header class="header">
-            <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
-        </header>
-        <main class="content">
-            <section class="profile">
-                <img src="./images/photo1634463083.jpeg" alt="Аватар" class="profile__avatar">
-                <div class="profile__info">
-                    <h1 class="profile__user">Жак-Ив Кусто</h1>
-                    <p class="profile__author">Исследователь океана</p>
-                    <button type="button" class="button profile__edit-button"></button>
-                </div>
-                <button aria-label="Добавить карточку" type="button" class="button profile__add-button"></button>
-            </section>
-            <section class="elements">
-                <article class="elements__list-items">
-                    <img src="./images/1.jpg" alt="дома" class="elements__image">
-                    <div class="elements__container">
-                        <h2 class="elements__heading">building</h2>
-                        <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                    </div>
-                </article>
-                <article class="elements__list-items">
-                    <img src="./images/2.jpg" alt="дома" class="elements__image">
-                    <div class="elements__container">
-                        <h2 class="elements__heading">building</h2>
-                        <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                    </div>
-                </article>
-                <article class="elements__list-items">
-                    <img src="./images/3.jpg" alt="дома" class="elements__image">
-                    <div class="elements__container">
-                        <h2 class="elements__heading">building</h2>
-                        <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                    </div>
-                </article>
-                <article class="elements__list-items">
-                    <img src="./images/4.jpg" alt="дома" class="elements__image">
-                    <div class="elements__container">
-                        <h2 class="elements__heading">building</h2>
-                        <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                    </div>
-                </article>
-                <article class="elements__list-items">
-                    <img src="./images/5.jpg" alt="дома" class="elements__image">
-                    <div class="elements__container">
-                        <h2 class="elements__heading">«Hello World»</h2>
-                        <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                    </div>
-                </article>
-                <article class="elements__list-items">
-                    <img src="./images/6.jpg" alt="дома" class="elements__image">
-                    <div class="elements__container">
-                        <h2 class="elements__heading">building</h2>
-                        <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                    </div>
-                </article>
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-        </footer>
-        <div class="popup">
-            <div class="popup__container">
-                <button class="button popup__close-button" type="button"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form" name="profile-edit-form">
-                    <input class="popup__input popup__input_user_name" type="text" name="name" required
-                        placeholder="Введите имя" value="">
-                    <input class="popup__input popup__input_user_job" type="text" name="job" required
-                        placeholder="Расскажите о себе" value="">
-                    <button class="button popup__save-button" type="submit">Сохранить</button>
-                </form>
+<div class="page__container">
+    <header class="header">
+        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <img src="./images/photo1634463083.jpeg" alt="Аватар" class="profile__avatar">
+            <div class="profile__info">
+                <h1 class="profile__user">Жак-Ив Кусто</h1>
+                <p class="profile__author">Исследователь океана</p>
+                <button type="button" class="button profile__edit-button"></button>
             </div>
+            <button aria-label="Добавить карточку" type="button" class="button profile__add-button"></button>
+        </section>
+        <section class="elements">
+            <!--article class="elements__list-items">
+
+            </article>
+            <article class="elements__list-items">
+                <img src="./images/2.jpg" alt="дома" class="elements__image">
+                <div class="elements__container">
+                    <h2 class="elements__heading">building</h2>
+                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
+                </div>
+            </article>
+            <article class="elements__list-items">
+                <img src="./images/3.jpg" alt="дома" class="elements__image">
+                <div class="elements__container">
+                    <h2 class="elements__heading">building</h2>
+                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
+                </div>
+            </article>
+            <article class="elements__list-items">
+                <img src="./images/4.jpg" alt="дома" class="elements__image">
+                <div class="elements__container">
+                    <h2 class="elements__heading">building</h2>
+                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
+                </div>
+            </article>
+            <article class="elements__list-items">
+                <img src="./images/5.jpg" alt="дома" class="elements__image">
+                <div class="elements__container">
+                    <h2 class="elements__heading">«Hello World»</h2>
+                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
+                </div>
+            </article>
+            <article class="elements__list-items">
+                <img src="./images/6.jpg" alt="дома" class="elements__image">
+                <div class="elements__container">
+                    <h2 class="elements__heading">building</h2>
+                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
+                </div>
+            </article-->
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup popup_type_edit">
+        <div class="popup__container">
+            <button class="button popup__close-button" type="button"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form" name="profile-edit-form">
+                <input class="popup__input popup__input_user_name" type="text" name="name" required
+                       placeholder="Введите имя" value="">
+                <input class="popup__input popup__input_user_job" type="text" name="job" required
+                       placeholder="Расскажите о себе" value="">
+                <button class="button popup__save-button" type="submit">Сохранить</button>
+            </form>
         </div>
     </div>
-    <script src="./scripts/index.js"></script>
+    <div class="popup popup_type_add">
+        <div class="popup__container">
+            <button class="button popup__close-button" type="button"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form popup__add " name="profile-add-form">
+                <input class="popup__input popup__input_title" type="text" name="name" required
+                       placeholder="Название" value="">
+                <input class="popup__input popup__input_link" type="url" name="job" required
+                       placeholder="Ссылка на картинку" value="">
+                <button class="button popup__save-button" type="submit">Cоздать</button>
+            </form>
+        </div>
+        <template class="template-card">
+            <article class="elements__list-items">
+                <img src="./images/1.jpg" alt="дома" class="elements__image">
+                <div class="elements__container">
+                    <h2 class="elements__heading"></h2>
+                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
+                </div>
+            </article>
+        </template>
+    </div>
+</div>
 </body>
 
 </html>
