@@ -35,11 +35,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../resume" />
+    <property name="js.last.introduce.type" value="CONST" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -68,7 +70,8 @@
       <workItem from="1637841774611" duration="270000" />
       <workItem from="1637842080802" duration="107000" />
       <workItem from="1637842267437" duration="4360000" />
-      <workItem from="1638086585246" duration="15023000" />
+      <workItem from="1638086585246" duration="30306000" />
+      <workItem from="1638206621064" duration="9263000" />
     </task>
     <servers />
   </component>
