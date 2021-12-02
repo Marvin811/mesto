@@ -58,16 +58,26 @@
                 <button class="button popup__save-button" type="submit">Cоздать</button>
             </form>
         </div>
-        <template class="template-card">
-            <div class="elements__list-items">
-                <img src="#" alt="  " class="elements__image">
-                <div class="elements__container">
-                    <h2 class="elements__heading"></h2>
-                    <button type="button" class="button elements__like-button" aria-label="Like"></button>
-                </div>
-            </div>
-        </template>
     </div>
+    <div class="popup popup_type_image">
+        <figure class="popup__container-image">
+            <button type="button" class="popup__close-button button"></button>
+            <img src="#" alt=" " class="popup__image">
+            <figcaption>
+                <h2 class="popup__heading"></h2>
+            </figcaption>
+        </figure>
+    </div>
+    <template class="template-card">
+        <div class="elements__list-items">
+            <button type="button" class="elements__delete-button"></button>
+            <img src="#" alt="  " class="elements__image">
+            <div class="elements__container">
+                <h2 class="elements__heading"></h2>
+                <button type="button" class="button elements__like-button" aria-label="Like"></button>
+            </div>
+        </div>
+    </template>
 </div>
 </body>
 
