@@ -76,7 +76,7 @@ function closePopup(popup) {
 }
 
 // Функция Обработчик «отправки» формы - редактирование профиля
-function formSubmitHandler(evt) {
+function hendleProfileSumbit(evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
@@ -152,7 +152,7 @@ function openImage(evt) {
 //Регистрация обработиков
 popupOpenButtonElement.addEventListener("click", () => openPopupProfile(popupElement));
 popupCloseButtonElement.addEventListener("click", () => closePopup(popupElement));
-formEditElement.addEventListener('submit', formSubmitHandler);
+formEditElement.addEventListener('submit', hendleProfileSumbit);
 //Попап добавления
 popupAddButtonElement.addEventListener("click", () => openPopup(popupAddElement));
 popupAddCloseElement.addEventListener("click", () => closePopup(popupAddElement));
