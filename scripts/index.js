@@ -23,7 +23,8 @@ const imageInput = popupAddCard.querySelector('.popup__input_link');
 const popupImageElement = document.querySelector('.popup_type_image');
 const popupCloseButton = popupImageElement.querySelector('.popup__close-button');
 const popupImage = document.querySelector(".popup__image");
-const popupHeading = document.querySelector(".popup__heading")
+const popupHeading = document.querySelector(".popup__heading");
+const popups = document.querySelector('.popup')
 //Добавление карточек из массива
 const initialCards = [
     {
@@ -58,10 +59,20 @@ const initialCards = [
     }
 ];
 
+function closePopupEsc(evt) {
+    if (evt.key === 'Escape') {
+        const openPopup = document.querySelector('.popup_is-opened');
+        closePopup(openPopup);
+    }
+}
+
 //Функция открытия
 function openPopup(popup) {
     popup.classList.add("popup_is-opened")
+    document.addEventListener("keydown", closePopupEsc);
 }
+
+//Функция закрытия на Overlay
 
 // Функция открытие - редактирование профиля
 function openPopupProfile() {
@@ -73,6 +84,7 @@ function openPopupProfile() {
 // Функция закрытие - редактирование профиля
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
+    document.removeEventListener("keydown", closePopupEsc);
 }
 
 // Функция Обработчик «отправки» формы - редактирование профиля
@@ -160,5 +172,4 @@ popupAddCard.addEventListener("submit", handleAdd);
 //Попап открытия карточки
 popupImage.addEventListener('click', () => openPopup(popupImageElement));
 popupCloseButton.addEventListener("click", () => closePopup(popupImageElement));
-
 render();
