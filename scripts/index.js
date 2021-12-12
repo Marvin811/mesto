@@ -24,7 +24,10 @@ const popupImageElement = document.querySelector('.popup_type_image');
 const popupCloseButton = popupImageElement.querySelector('.popup__close-button');
 const popupImage = document.querySelector(".popup__image");
 const popupHeading = document.querySelector(".popup__heading");
-const popups = document.querySelector('.popup')
+
+const popupEditOverlay = popupElement.querySelector('.popup__overlay');
+const popupAddOverlay = popupAddElement.querySelector('.popup__overlay');
+const popupImageOverlay = popupImageElement.querySelector('.popup__overlay');
 //Добавление карточек из массива
 const initialCards = [
     {
@@ -70,9 +73,17 @@ function closePopupEsc(evt) {
 function openPopup(popup) {
     popup.classList.add("popup_is-opened")
     document.addEventListener("keydown", closePopupEsc);
+
 }
 
-//Функция закрытия на Overlay
+// Функция закрытия на Overlay
+const closePopupByClickOnOverlay = function (event) {
+    console.log(event.target, event.currentTarget);
+    if (event.target !== event.currentTarget) {
+        return;
+    }
+    closePopup(event);
+};
 
 // Функция открытие - редактирование профиля
 function openPopupProfile() {
@@ -172,4 +183,8 @@ popupAddCard.addEventListener("submit", handleAdd);
 //Попап открытия карточки
 popupImage.addEventListener('click', () => openPopup(popupImageElement));
 popupCloseButton.addEventListener("click", () => closePopup(popupImageElement));
+
+popupEditOverlay.addEventListener('click', () => closePopup(popupElement));
+popupAddOverlay.addEventListener('click', () => closePopup(popupAddElement));
+popupImageOverlay.addEventListener('click', () => closePopup(popupImageElement));
 render();

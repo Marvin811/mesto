@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <link rel="icon" type="image/ico" href="./images/icon.ico">
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
 
     <title>mesto</title>
 </head>
@@ -35,32 +36,63 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup popup_type_edit">
+        <div class="popup__overlay"></div>
         <div class="popup__container">
             <button class="popup__close-button button " type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form popup__edit-profile" name="profile-edit-form">
-                <input class="popup__input popup__input_user_name" type="text" name="name" required  minlength="2" maxlength="40"
-                       placeholder="Введите имя" value="">
-                <input class="popup__input popup__input_user_job" type="text" name="job" required minlength="2" maxlength="200"
-                       placeholder="Расскажите о себе" value="">
+                <input class="popup__input popup__input_user_name"
+                       type="text"
+                       name="name"
+                       id="name"
+                       required
+                       minlength="2"
+                       maxlength="40"
+                       placeholder="Введите имя"
+                       value="">
+                <span id="name-error" class="popup__error-visible"></span>
+                <input class="popup__input popup__input_user_job"
+                       type="text"
+                       name="job"
+                       id="job"
+                       required minlength="2"
+                       maxlength="200"
+                       placeholder="Расскажите о себе"
+                       value="">
+                <span id="job-error" class="popup__error-visible"></span>
                 <button class="button popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
     <div class="popup popup_type_add">
+        <div class="popup__overlay"></div>
         <div class="popup__container">
             <button class="popup__close-button button" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form popup__add-image" name="profile-add-form">
-                <input class="popup__input popup__input_title" type="text" name="place" required minlength="2" maxlength="30"
-                       placeholder="Название" value="">
-                <input class="popup__input popup__input_link" type="url" name="photo-link" required
-                       placeholder="Ссылка на картинку" value="">
+                <input class="popup__input popup__input_title"
+                       type="text"
+                       name="place"
+                       id="place"
+                       required minlength="2"
+                       maxlength="30"
+                       placeholder="Название"
+                       value="">
+                <span id="place-error" class="popup__error-visible"></span>
+                <input class="popup__input popup__input_link"
+                       type="url"
+                       name="photo-link"
+                       id="link"
+                       required
+                       placeholder="Ссылка на картинку"
+                       value="">
+                <span id="link-error" class="popup__error-visible"></span>
                 <button class="button popup__save-button" type="submit">Cоздать</button>
             </form>
         </div>
     </div>
     <div class="popup popup_type_image">
+        <div class="popup__overlay"></div>
         <figure class="popup__container-image">
             <button type="button" class="popup__close-button button"></button>
             <img src="#" alt=" " class="popup__image">
@@ -79,7 +111,6 @@
             </div>
         </div>
     </template>
-    <script src="./scripts/validate.js"></script>
 </div>
 </body>
 
