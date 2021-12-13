@@ -1,8 +1,8 @@
+const popups = document.querySelectorAll('.popup')
 //Находим форму в DOM - редак профиля
 const popupElement = document.querySelector(".popup_type_edit");
 const formEditElement = popupElement.querySelector('.popup__edit-profile');
 // Находим кнопки - редактирование профиля
-const popupCloseButtonElement = popupElement.querySelector(".popup__close-button");// кнопка закрытия edit профиль
 const popupOpenButtonElement = document.querySelector(".profile__edit-button");// кнопка открытия edit профиль
 //Находим поля формы в DOM - редактирование профиля
 const nameInput = popupElement.querySelector('.popup__input_user_name');//ввода имени user
@@ -11,7 +11,6 @@ const nameProfile = document.querySelector(".profile__user");// форма вв�
 const jobProfile = document.querySelector(".profile__author");//занятие user
 //Находим кнопки - добавление картинок ///////////////мой код////////////////////
 const popupAddElement = document.querySelector(".popup_type_add");
-const popupAddCloseElement = popupAddElement.querySelector(".popup__close-button");
 const popupAddButtonElement = document.querySelector(".profile__add-button");
 // //Находим кнопки для добавления карточек
 const popupAddCard = document.querySelector(".popup__add-image");
@@ -21,13 +20,9 @@ const titleInput = popupAddCard.querySelector('.popup__input_title');
 const imageInput = popupAddCard.querySelector('.popup__input_link');
 //Открытие и закрытие попапа карточек
 const popupImageElement = document.querySelector('.popup_type_image');
-const popupCloseButton = popupImageElement.querySelector('.popup__close-button');
 const popupImage = document.querySelector(".popup__image");
 const popupHeading = document.querySelector(".popup__heading");
 
-const popupEditOverlay = popupElement.querySelector('.popup__overlay');
-const popupAddOverlay = popupAddElement.querySelector('.popup__overlay');
-const popupImageOverlay = popupImageElement.querySelector('.popup__overlay');
 //Добавление карточек из массива
 const initialCards = [
     {
@@ -75,15 +70,6 @@ function openPopup(popup) {
     document.addEventListener("keydown", closePopupEsc);
 
 }
-
-// Функция закрытия на Overlay
-const closePopupByClickOnOverlay = function (event) {
-    console.log(event.target, event.currentTarget);
-    if (event.target !== event.currentTarget) {
-        return;
-    }
-    closePopup(event);
-};
 
 // Функция открытие - редактирование профиля
 function openPopupProfile() {
@@ -142,6 +128,7 @@ function handleAdd(evt) {
     const Item = createCard({
         name: inputFormTitle,
         link: inputFormImage
+
     })
 
     cardsElement.prepend(Item);
@@ -149,9 +136,14 @@ function handleAdd(evt) {
     titleInput.value = '';
     imageInput.value = '';
 
+    buttonDisabled();
     closePopup(popupAddElement);
-}
 
+}
+function buttonDisabled() {
+    const disabled = document.querySelector('.popup__save-button');
+   disabled.classList.add('popup__save-button_disabled');
+}
 //Функция удаления карточки
 function handleDelete(evt) {
     const targerEl = evt.target;
@@ -172,19 +164,23 @@ function openImage(evt) {
     openPopup(popupImageElement)
 }
 
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_is-opened')) {
+            console.log(evt)
+            closePopup(popup);
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+            closePopup(popup);
+        }
+    })
+})
 //Регистрация обработиков
 popupOpenButtonElement.addEventListener("click", () => openPopupProfile(popupElement));
-popupCloseButtonElement.addEventListener("click", () => closePopup(popupElement));
 formEditElement.addEventListener('submit', hendleProfileSumbit);
 //Попап добавления
 popupAddButtonElement.addEventListener("click", () => openPopup(popupAddElement));
-popupAddCloseElement.addEventListener("click", () => closePopup(popupAddElement));
 popupAddCard.addEventListener("submit", handleAdd);
 //Попап открытия карточки
 popupImage.addEventListener('click', () => openPopup(popupImageElement));
-popupCloseButton.addEventListener("click", () => closePopup(popupImageElement));
-
-popupEditOverlay.addEventListener('click', () => closePopup(popupElement));
-popupAddOverlay.addEventListener('click', () => closePopup(popupAddElement));
-popupImageOverlay.addEventListener('click', () => closePopup(popupImageElement));
 render();

@@ -36,7 +36,6 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup popup_type_edit">
-        <div class="popup__overlay"></div>
         <div class="popup__container">
             <button class="popup__close-button button " type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -60,12 +59,11 @@
                        placeholder="Расскажите о себе"
                        value="">
                 <span id="job-error" class="popup__error-visible"></span>
-                <button class="button popup__save-button" type="submit">Сохранить</button>
+                <button class="button popup__save-button popup__save-button_disabled" type="submit" disabled>Сохранить</button>
             </form>
         </div>
     </div>
     <div class="popup popup_type_add">
-        <div class="popup__overlay"></div>
         <div class="popup__container">
             <button class="popup__close-button button" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
@@ -74,7 +72,8 @@
                        type="text"
                        name="place"
                        id="place"
-                       required minlength="2"
+                       required
+                       minlength="2"
                        maxlength="30"
                        placeholder="Название"
                        value="">
@@ -87,12 +86,11 @@
                        placeholder="Ссылка на картинку"
                        value="">
                 <span id="link-error" class="popup__error-visible"></span>
-                <button class="button popup__save-button" type="submit">Cоздать</button>
+                <button class="button popup__save-button popup__save-button_disabled" type="submit" disabled>Cоздать</button>
             </form>
         </div>
     </div>
     <div class="popup popup_type_image">
-        <div class="popup__overlay"></div>
         <figure class="popup__container-image">
             <button type="button" class="popup__close-button button"></button>
             <img src="#" alt=" " class="popup__image">
