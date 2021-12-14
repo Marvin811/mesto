@@ -68,7 +68,6 @@ function closePopupEsc(evt) {
 function openPopup(popup) {
     popup.classList.add("popup_is-opened")
     document.addEventListener("keydown", closePopupEsc);
-
 }
 
 // Функция открытие - редактирование профиля
@@ -82,6 +81,7 @@ function openPopupProfile() {
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
     document.removeEventListener("keydown", closePopupEsc);
+
 }
 
 // Функция Обработчик «отправки» формы - редактирование профиля
@@ -97,7 +97,13 @@ function render() {
     const cards = initialCards.map((item) => {
         return createCard(item);
     })
+
     cardsElement.append(...cards);
+}
+
+function buttonDisabled() {
+    const buttonOff = popupAddElement.querySelector('.popup__save-button');
+    buttonOff.classList.add('popup__save-button_disabled');
 }
 
 function createCard(item) {
@@ -122,7 +128,6 @@ function createCard(item) {
 //Добавление новой карточки
 function handleAdd(evt) {
     evt.preventDefault();
-
     const inputFormTitle = titleInput.value;
     const inputFormImage = imageInput.value;
     const Item = createCard({
@@ -140,10 +145,7 @@ function handleAdd(evt) {
     closePopup(popupAddElement);
 
 }
-function buttonDisabled() {
-    const disabled = document.querySelector('.popup__save-button');
-   disabled.classList.add('popup__save-button_disabled');
-}
+
 //Функция удаления карточки
 function handleDelete(evt) {
     const targerEl = evt.target;
@@ -167,7 +169,6 @@ function openImage(evt) {
 popups.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup_is-opened')) {
-            console.log(evt)
             closePopup(popup);
         }
         if (evt.target.classList.contains('popup__close-button')) {

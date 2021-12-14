@@ -7,20 +7,23 @@ const showError = (form, input, errorMessageText, errorMessageClass, inputErrorC
 const hideError = (form, input, errorMessageClass, inputErrorClass) => {
     const errorMessage = form.querySelector(`#${input.id}-error`);
     errorMessage.textContent = "";
-    errorMessage.classList.remove(errorMessageClass)
-    input.classList.remove(inputErrorClass)
+    errorMessage.classList.remove(errorMessageClass);
+    input.classList.remove(inputErrorClass);
 }
 const hasInvalidInput = (inputs) => {
-    return Array.from(inputs).some((el) => !el.validity.valid)
+    return Array.from(inputs).some((el) => !el.validity.valid);
 }
 const toggleButtonError = (inputs, button, inactiveButtonClass) => {
     if (hasInvalidInput(inputs)) {
+
         button.classList.add(inactiveButtonClass);
         button.disabled = true;
     } else {
+
         button.classList.remove(inactiveButtonClass);
         button.disabled = false;
     }
+
 }
 
 const checkIfInputValid = (form, input, {inputErrorClass, errorClass}) => {
@@ -33,7 +36,7 @@ const checkIfInputValid = (form, input, {inputErrorClass, errorClass}) => {
 
 const setInputListener = (form, {inputSelector, submitButtonSelector, inactiveButtonClass, ...rest}) => {
     const inputs = form.querySelectorAll(inputSelector);
-    const submitButton = form.querySelector(submitButtonSelector)
+    const submitButton = form.querySelector(submitButtonSelector);
     inputs.forEach((input) => {
         input.addEventListener('input', () => {
             checkIfInputValid(form, input, rest);
