@@ -104,6 +104,7 @@ function render() {
 function buttonDisabled() {
     const buttonOff = popupAddElement.querySelector('.popup__save-button');
     buttonOff.classList.add('popup__save-button_disabled');
+    buttonOff.setAttribute("disabled", "disabled");
 }
 
 function createCard(item) {
