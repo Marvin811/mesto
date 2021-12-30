@@ -11,7 +11,7 @@ const nameInput = popupElement.querySelector('.popup__input_user_name');//вво
 const jobInput = popupElement.querySelector('.popup__input_user_job');//ввода занятие user
 const nameProfile = document.querySelector(".profile__user");// форма ввода имя user
 const jobProfile = document.querySelector(".profile__author");//занятие user
-//Находим кнопки - добавление картинок ///////////////мой код////////////////////
+//Находим кнопки - добавление картинок
 const popupAddElement = document.querySelector(".popup_type_add");
 const popupAddButtonElement = document.querySelector(".profile__add-button");
 // //Находим кнопки для добавления карточек
@@ -20,10 +20,7 @@ const cardsElement = document.querySelector('.elements');
 //const templateElement = document.querySelector('.template-card');
 const titleInput = popupAddCard.querySelector('.popup__input_title');
 const imageInput = popupAddCard.querySelector('.popup__input_link');
-//Открытие и закрытие попапа карточек
-const popupImageElement = document.querySelector('.popup_type_image');
-const popupImage = document.querySelector(".popup__image");
-//const popupHeading = document.querySelector(".popup__heading");
+
 
 //Добавление карточек из массива
 const initialCards = [
@@ -52,12 +49,11 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1603621760091-d7b12c66549a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1464&q=80'
     }
 ];
-const placesList = document.querySelector('.elements');
 
 initialCards.forEach(item => {
-    const card = new Card('.template-card', item.name, item.link);
-    const cardEl = card.getView();
-    placesList.append(cardEl);
+    const card = new Card('.template-card', item.name, item.link, openPopup);
+    const cardEl = card.generateCard();
+    cardsElement.append(cardEl);
 })
 
 function closePopupEsc(evt) {
@@ -92,7 +88,7 @@ function hendleProfileSumbit(evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
-    closePopup(popupElement);
+     closePopup(popupElement);
 }
 
 //Функции templateElements
@@ -132,20 +128,27 @@ function buttonDisabled() {
 // //Добавление новой карточки
 function handleAdd(evt) {
     evt.preventDefault();
-    const inputFormTitle = titleInput.value;
-    const inputFormImage = imageInput.value;
-    const Item = getView({
-        name: inputFormTitle,
-        link: inputFormImage
+    // const inputFormTitle = titleInput.value;
+    // const inputFormImage = imageInput.value;
+    // const Item = getView({
+    //     name: inputFormTitle,
+    //     link: inputFormImage
+    //
+    // })
+    //
+    // cardsElement.prepend(Item);
+    //
+    // titleInput.value = '';
+    // imageInput.value = '';
+    const card = new Card('.template-card', titleInput.value, imageInput.value, openPopup);
+    const cardEl = card.generateCard();
+    cardsElement.prepend(cardEl);
 
-    })
-
-    cardsElement.prepend(Item);
 
     titleInput.value = '';
     imageInput.value = '';
 
-    //buttonDisabled();
+    buttonDisabled();
     closePopup(popupAddElement);
 
 }
@@ -163,12 +166,12 @@ function handleAdd(evt) {
 // }
 
 //Функция открытия попапа карточки
-function openImage(evt) {
-    popupImage.src = evt.target.src;
-    popupImage.alt = evt.currentTarget.alt;
-    popupHeading.textContent = evt.currentTarget.alt;
-    openPopup(popupImageElement)
-}
+// function openImage(evt) {
+//     popupImage.src = evt.target.src;
+//     popupImage.alt = evt.currentTarget.alt;
+//     popupHeading.textContent = evt.currentTarget.alt;
+//     openPopup(popupImageElement)
+// }
 
 popups.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
@@ -180,6 +183,7 @@ popups.forEach((popup) => {
         }
     })
 })
+
 //Регистрация обработиков
 popupOpenButtonElement.addEventListener("click", () => openPopupProfile(popupElement));
 formEditElement.addEventListener('submit', hendleProfileSumbit);
@@ -187,6 +191,6 @@ formEditElement.addEventListener('submit', hendleProfileSumbit);
 popupAddButtonElement.addEventListener("click", () => openPopup(popupAddElement));
 popupAddCard.addEventListener("submit", handleAdd);
 //Попап открытия карточки
-popupImage.addEventListener('click', () => openPopup(popupImageElement));
+//popupImage.addEventListener('click', () => openPopup(popupImageElement));
 //render();
 

@@ -1,8 +1,10 @@
+
 class Card {
-    constructor(selector, title, image) {
+    constructor(selector, title, image, onPopup) {
         this._selector = selector;
         this._title = title;
         this._image = image;
+        this._onPopup = onPopup;
     }
 
     _getTemplate() {
@@ -11,14 +13,16 @@ class Card {
             .content
             .querySelector('.elements__list-items')
             .cloneNode(true);
+
         return cardElement;
     }
 
     //Функция удаления карточки
     _handleDelete(evt) {
-        const targerEl = evt.target;
-        const listItem = targerEl.closest(".elements__list-items");
-        listItem.remove();
+        // const targerEl = evt.target;
+        // const listItem = targerEl.closest(".elements__list-items");
+        // listItem.remove();
+        evt.target.closest('.elements__list-items').remove();
     }
 
     //Функция лайк
@@ -27,24 +31,50 @@ class Card {
     }
 
     //Функция открытия попапа карточки
-    _openImage(evt) {
-        popupImage.src = evt.target.src;
-        popupImage.alt = evt.currentTarget.alt;
-        popupHeading.textContent = evt.currentTarget.alt;
-        openPopup(popupImageElement)
+    _openImage= () => {
+        //Открытие и закрытие попапа карточек
+        const popupImageElement = document.querySelector('.popup_type_image');
+        const popupImage = document.querySelector(".popup__image");
+        const popupHeading = document.querySelector(".popup__heading");
+
+        popupImage.src = this._image;
+        popupImage.alt = this._title;
+        popupHeading.textContent = this._title;
+
+        this._onPopup(popupImageElement)
     }
 
 
-    getView() {
+    generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.elements__heading').textContent = this._title;
-        this._element.querySelector('.elements__image').src = this._image;
+        this._setEventListeners();
 
-        this._element.querySelector('.elements__like-button').addEventListener('click', this._handleLike);
-        this._element.querySelector('.elements__delete-button').addEventListener('click', this._handleDelete);
-        this._element.querySelector('.elements__image').addEventListener('click', this._openImage);
+        this._element.querySelector('.elements__heading').textContent = this._title;
+        this._element.querySelector('.elements__image').src = this._image
+        this._element.querySelector('.elements__image').alt = this._title;
+
         return this._element;
     }
+
+    // this._element.querySelector('.elements__heading').textContent = this._title;
+    // this._element.querySelector('.elements__image').src = this._image;
+    //
+    // this._element.querySelector('.elements__like-button').addEventListener('click', this._handleLike);
+    // this._element.querySelector('.elements__delete-button').addEventListener('click', this._handleDelete);
+    // this._element.querySelector('.elements__image').addEventListener('click', this._openImage);
+
+    _setEventListeners() {
+        const deleteButton = this._element.querySelector('.elements__delete-button');
+        deleteButton.addEventListener('click', this._handleDelete);
+
+        const likeButton = this._element.querySelector('.elements__like-button');
+        likeButton.addEventListener('click', this._handleLike);
+
+        const openImage = this._element.querySelector('.elements__image');
+        openImage.addEventListener('click', this._openImage);
+    }
+
+
 }
 
 export default Card;
