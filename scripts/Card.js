@@ -1,4 +1,3 @@
-
 class Card {
     constructor(selector, title, image, onPopup) {
         this._selector = selector;
@@ -19,9 +18,6 @@ class Card {
 
     //Функция удаления карточки
     _handleDelete(evt) {
-        // const targerEl = evt.target;
-        // const listItem = targerEl.closest(".elements__list-items");
-        // listItem.remove();
         evt.target.closest('.elements__list-items').remove();
     }
 
@@ -31,7 +27,7 @@ class Card {
     }
 
     //Функция открытия попапа карточки
-    _openImage= () => {
+    _openImage = () => {
         //Открытие и закрытие попапа карточек
         const popupImageElement = document.querySelector('.popup_type_image');
         const popupImage = document.querySelector(".popup__image");
@@ -56,13 +52,6 @@ class Card {
         return this._element;
     }
 
-    // this._element.querySelector('.elements__heading').textContent = this._title;
-    // this._element.querySelector('.elements__image').src = this._image;
-    //
-    // this._element.querySelector('.elements__like-button').addEventListener('click', this._handleLike);
-    // this._element.querySelector('.elements__delete-button').addEventListener('click', this._handleDelete);
-    // this._element.querySelector('.elements__image').addEventListener('click', this._openImage);
-
     _setEventListeners() {
         const deleteButton = this._element.querySelector('.elements__delete-button');
         deleteButton.addEventListener('click', this._handleDelete);
@@ -73,7 +62,6 @@ class Card {
         const openImage = this._element.querySelector('.elements__image');
         openImage.addEventListener('click', this._openImage);
     }
-
 
 }
 
