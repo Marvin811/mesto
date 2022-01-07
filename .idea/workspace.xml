@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24ea9c7d-d509-4243-8251-3b1b1ebfbf90" name="Changes" comment="исправление Card">
-      <change afterPath="$PROJECT_DIR$/scripts/FormValidator.js" afterDir="false" />
+    <list default="true" id="24ea9c7d-d509-4243-8251-3b1b1ebfbf90" name="Changes" comment="исправление validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/FormValidator.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/FormValidator.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +119,8 @@
       <workItem from="1640703058201" duration="3552000" />
       <workItem from="1640781520599" duration="17008000" />
       <workItem from="1641373101869" duration="6879000" />
-      <workItem from="1641469873699" duration="7893000" />
+      <workItem from="1641469873699" duration="8645000" />
+      <workItem from="1641548820295" duration="7362000" />
     </task>
     <task id="LOCAL-00001" summary="исправление Card">
       <created>1640864349989</created>
@@ -131,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640864349989</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="исправление validation">
+      <created>1641479342616</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641479342616</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +155,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="исправление Card" />
-    <option name="LAST_COMMIT_MESSAGE" value="исправление Card" />
+    <MESSAGE value="исправление validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="исправление validation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
