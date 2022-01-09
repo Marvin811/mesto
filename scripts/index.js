@@ -102,7 +102,7 @@ function hendleProfileSumbit(evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
-     closePopup(popupElement);
+    closePopup(popupElement);
 }
 
 function buttonDisabled() {
@@ -129,10 +129,7 @@ function handleAdd(evt) {
 
 popups.forEach((popup) => {
     popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_is-opened')) {
-            closePopup(popup);
-        }
-        if (evt.target.classList.contains('popup__close-button')) {
+        if (evt.target.classList.contains('popup_is-opened') || evt.target.classList.contains('popup__close-button')) {
             closePopup(popup);
         }
     })
