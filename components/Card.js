@@ -1,68 +1,35 @@
 class Card {
-    constructor(selector, title, image, onPopup) {
+    constructor({name, link, handleCardClick}, selector) {
         this._selector = selector;
-        this._title = title;
-        this._image = image;
-        this._onPopup = onPopup;
-    }
-
-    _getTemplate() {
-        const cardElement = document
+        this._name = name;
+        this._link = link;
+        this._handleCardClick = handleCardClick;
+        this._cardElement = document
             .querySelector(this._selector)
             .content
             .querySelector('.elements__list-items')
             .cloneNode(true);
-
-        return cardElement;
+        this._like = this._cardElement.querySelector('.elements__like-button');
+        this._delete = this._cardElement.querySelector('.elements__delete-button');
+        this._title = this._cardElement.querySelector('.elements__image');
+        this._image = this._cardElement.querySelector('.elements__heading');
     }
-
-    //Функция удаления карточки
-    _handleDelete(evt) {
-        evt.target.closest('.elements__list-items').remove();
-    }
-
-    //Функция лайк
-    _handleLike(evt) {
-        evt.target.classList.toggle('elements__like-button_active');
-    }
-
-    //Функция открытия попапа карточки
-    _openImage = () => {
-        //Открытие и закрытие попапа карточек
-        const popupImageElement = document.querySelector('.popup_type_image');
-        const popupImage = document.querySelector(".popup__image");
-        const popupHeading = document.querySelector(".popup__heading");
-
-        popupImage.src = this._image;
-        popupImage.alt = this._title;
-        popupHeading.textContent = this._title;
-
-        this._onPopup(popupImageElement)
-    }
-
 
     generateCard() {
-        this._element = this._getTemplate();
+        this._image.src = this._link;
+        this._image.alt = this._name;
+        this._title.textContent = this._name;
+
         this._setEventListeners();
 
-        this._element.querySelector('.elements__heading').textContent = this._title;
-        this._element.querySelector('.elements__image').src = this._image
-        this._element.querySelector('.elements__image').alt = this._title;
-
-        return this._element;
+        return this._cardElement;
     }
 
     _setEventListeners() {
-        const deleteButton = this._element.querySelector('.elements__delete-button');
-        deleteButton.addEventListener('click', this._handleDelete);
-
-        const likeButton = this._element.querySelector('.elements__like-button');
-        likeButton.addEventListener('click', this._handleLike);
-
-        const openImage = this._element.querySelector('.elements__image');
-        openImage.addEventListener('click', this._openImage);
+        this._like.addEventListener('click', () => this._like.classList.toggle('elements__like-button_active'));
+        this._delete.addEventListener('click', () => this._cardElement.remove());
+        this._image.addEventListener('click', () => this._handleCardClick);
     }
-
 }
 
 export default Card;
