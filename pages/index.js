@@ -12,8 +12,8 @@ const formEditElement = popupElement.querySelector('.popup__edit-profile');
 // Находим кнопки - редактирование профиля
 const popupOpenButtonElement = document.querySelector(".profile__edit-button");// кнопка открытия edit профиль
 //Находим поля формы в DOM - редактирование профиля
-//const nameInput = popupElement.querySelector('.popup__input_user_name');//ввода имени user
-//const jobInput = popupElement.querySelector('.popup__input_user_job');//ввода занятие user
+const nameInput = popupElement.querySelector('.popup__input_user_name');//ввода имени user
+const jobInput = popupElement.querySelector('.popup__input_user_job');//ввода занятие user
 //const nameProfile = document.querySelector(".profile__user");// форма ввода имя user
 //const jobProfile = document.querySelector(".profile__author");//занятие user
 //Находим кнопки - добавление картинок
@@ -67,13 +67,18 @@ const validationConfig = {
 const editFormValidator = new FormValidator(validationConfig, formEditElement);
 const cardFormValidator = new FormValidator(validationConfig, popupAddCard);
 
+const section = new Section({
+    items: initialCards,
+    renderer: renderCard
+}, '.elements');
 
-const userInfo = new UserInfo( {nameSelector: ".profile__user", infoSelector: ".profile__author" } )
-// initialCards.forEach(item => {
-//     const card = new Card('.template-card', item.name, item.link, openPopup);
-//     const cardEl = card.generateCard();
-//     cardsElement.append(cardEl);
-// })
+const popupImage = new PopupWithImage('.popup_type_image');
+
+const userInfo = new UserInfo( {
+    nameSelector: ".profile__user",
+    infoSelector: ".profile__author"
+});
+
 function renderCard(objCard) {
     const card = new Card({
         name: objCard.name,
@@ -84,53 +89,27 @@ function renderCard(objCard) {
     return card.generateCard();
 }
 
-const popupImage = new PopupWithImage('.popup_type_image');
-
-// const popupPlaceClass = new PopupWithFrom({
-//     selector: '.popup_type_place',
-//     handleAdd: (formData) => {
-//         createCard(formData);
-//     }
-// });
-
-// function closePopupEsc(evt) {
-//     if (evt.key === 'Escape') {
-//         const openPopup = document.querySelector('.popup_is-opened');
-//         closePopup(openPopup);
-//     }
-// }
-//
-// //Функция открытия
-// function openPopup(popup) {
-//     popup.classList.add("popup_is-opened")
-//     document.addEventListener("keydown", closePopupEsc);
-// }
-//
-// // Функция открытие - редактирование профиля
-// function openPopupProfile() {
-//     nameInput.value = nameProfile.textContent;
-//     jobInput.value = jobProfile.textContent;
-//     openPopup(popupElement);
-// }
-const elementSumbitHandler = ({title, image}) => {
-    const cardAdd = renderCard({name: title, link: image});
+const elementSumbitHandler = ({ place, photo }) => {
+    const cardAdd = renderCard({name: place, link: photo});
     section.addItem(cardAdd);
-    cardFormValidator.disabledButton();
+    cardFormValidator.setInactiveButton();
 };
 
-const profileSumbitHendle = ({name, info}) => {
-    userInfo.setUserInfo({name, info})
+const profileSumbitHandler = ({name, info}) => {
+    userInfo.setUserInfo({name, info});
 };
-const popupProfile = new PopupWithFrom('.popup_type_image', elementSumbitHandler);
-const popupEdit = new PopupWithFrom('.popup_type_edit', profileSumbitHendle);
+const popupProfile = new PopupWithFrom('.popup_type_add', elementSumbitHandler);
+const popupEdit = new PopupWithFrom('.popup_type_edit', profileSumbitHandler);
 
 popupOpenButtonElement.addEventListener('click', () => {
     const user = userInfo.getUserInfo();
     nameInput.value = user.name;
-    infoInput.value = user.info;
+    jobInput.value = user.info;
     popupEdit.open();
 });
-popupAddButtonElement.addEventListener('click', () => popupProfile.open());
+popupAddButtonElement.addEventListener('click', () => {
+    popupProfile.open();
+});
 
 //
 // // Функция закрытие - редактирование профиля
@@ -147,10 +126,7 @@ popupAddButtonElement.addEventListener('click', () => popupProfile.open());
 //     closePopup(popupElement);
 // }
 
-const section = new Section({
-    items: initialCards,
-    renderer: renderCard
-}, 'elements');
+
 
 // function buttonDisabled() {
 //     const buttonOff = popupAddElement.querySelector('.popup__save-button');
@@ -191,6 +167,6 @@ const section = new Section({
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
-//section.renderSection();
+section.renderSection();
 
 
