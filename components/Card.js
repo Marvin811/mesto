@@ -11,13 +11,13 @@ class Card {
             .cloneNode(true);
         this._like = this._cardElement.querySelector('.elements__like-button');
         this._delete = this._cardElement.querySelector('.elements__delete-button');
-        this._title = this._cardElement.querySelector('.elements__image');
-        this._image = this._cardElement.querySelector('.elements__heading');
+        this._title = this._cardElement.querySelector('.elements__heading');
+        this._image = this._cardElement.querySelector('.elements__image');
     }
 
     generateCard() {
         this._image.src = this._link;
-        this._image.alt = this._name;
+        this._title.alt = this._name;
         this._title.textContent = this._name;
 
         this._setEventListeners();
