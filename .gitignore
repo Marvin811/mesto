@@ -2,6 +2,8 @@
 ### Example user template
 
 # IntelliJ project files
+node_modules
+dist
 .idea
 *.iml
 out

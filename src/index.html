@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-    <link rel="icon" type="image/ico" href="./images/icon.ico">
+    <!--link rel="stylesheet" href="./pages/index.css"-->
+    <link rel="icon" type="image/ico" href="imagescon.ico">
 
 
     <title>mesto</title>
@@ -15,11 +15,11 @@
 <body class="page">
 <div class="page__container">
     <header class="header">
-        <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="Логотип Место" class="header__logo">
     </header>
     <main class="content">
         <section class="profile">
-            <img src="./images/photo1634463083.jpeg" alt="Аватар" class="profile__avatar">
+            <img src="<%=require('./images/photo1634463083.jpeg')%>" alt="Аватар" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__user">Жак-Ив Кусто</h1>
                 <p class="profile__author">Исследователь океана</p>
@@ -110,7 +110,7 @@
         </div>
     </template>
 </div>
-<script type="module" src="./pages/index.js"></script>
+<!--script type="module" src="./pages/index.js"></script-->
 </body>
 
 </html>
