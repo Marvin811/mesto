@@ -24,7 +24,7 @@ class Popup {
         this._setEventListeners();
     }
     _removeListener() {
-        document.removeEventListener('keydown', this._handleClose);
+        document.removeEventListener('keydown', this._handleEscClose);
         this._popup.removeEventListener('click', this._handleClose);
     }
 }

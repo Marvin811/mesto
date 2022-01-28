@@ -4,12 +4,10 @@ export default class UserInfo {
         this._infoSelector = document.querySelector(infoSelector);
     }
     getUserInfo() {
-        this._userData = {};
-
-        this._userData.name = this._nameSelector.textContent;
-        this._userData.info = this._infoSelector.textContent;
-
-        return this._userData;
+        return {
+            name: this._nameSelector.textContent,
+            info: this._infoSelector.textContent
+        }
     }
 
     setUserInfo({name, info}) {
