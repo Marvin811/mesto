@@ -32,27 +32,17 @@ const userInfo = new UserInfo({
     infoSelector: ".profile__author"
 });
 
-// function renderCard(objCard) {
-//     const card = new Card({
-//         name: objCard.name,
-//         link: objCard.link,
-//         handleCardClick: () => popupImage.open(obj)
-//     }, ".template-card");
-//
-//     return card.generateCard();
-// }
-
 function renderCard(cardData) {
     const card = new Card({ cardData: cardData,
             handleCardClick: () => {
                 popupImage.open(cardData.name, cardData.link);
             }},
         '#cardTemplate');
-    return card.generate();;
+    return card.generate();
 }
 
-const elementSumbitHandler = ({title, image}) => {
-    const cardAdd = renderCard({name: title, link: image});
+const elementSumbitHandler = ({place, photo}) => {
+    const cardAdd = renderCard({name: place, link: photo });
     section.addItem(cardAdd);
     cardFormValidator.setInactiveButton();
 };
