@@ -7,7 +7,7 @@ import PopupWithFrom from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import {
     validationConfig,
-    initialCards,
+    //initialCards,
     formEditElement,
     popupOpenButtonElement,
     nameInput,
@@ -15,15 +15,20 @@ import {
     popupAddButtonElement,
     popupAddCard
 } from '../utils/constants.js';
+import Api from "../components/Api.js";
 
+const api = new Api({
+    address: 'https://mesto.nomoreparties.co/v1/cohort-35',
+    token: '7e1e7983-5be2-461b-86d0-72ce046c0cdb'
+})
 
 const editFormValidator = new FormValidator(validationConfig, formEditElement);
 const cardFormValidator = new FormValidator(validationConfig, popupAddCard);
 
-const section = new Section({
-    items: initialCards,
-    renderer: renderCard
-}, '.elements');
+// const section = new Section({
+//     items: initialCards,
+//     renderer: renderCard
+// }, '.elements');
 
 const popupImage = new PopupWithImage('.popup_type_image');
 
@@ -33,16 +38,18 @@ const userInfo = new UserInfo({
 });
 
 function renderCard(cardData) {
-    const card = new Card({ cardData: cardData,
+    const card = new Card({
+            cardData: cardData,
             handleCardClick: () => {
                 popupImage.open(cardData.name, cardData.link);
-            }},
+            }
+        },
         '#cardTemplate');
     return card.generate();
 }
 
 const elementSumbitHandler = ({place, photo}) => {
-    const cardAdd = renderCard({name: place, link: photo });
+    const cardAdd = renderCard({name: place, link: photo});
     section.addItem(cardAdd);
     cardFormValidator.setInactiveButton();
 };
@@ -66,6 +73,15 @@ popupAddButtonElement.addEventListener('click', () => {
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
-section.renderSection();
+//section.renderSection();
 
-
+//Загрузка карточек с сервера
+api.getCards()
+    .then((cards) => {
+        const section = new Section({
+            items: cards,
+            renderer: renderCard
+        }, '.elements');
+        section.renderSection(cards);
+    })
+    .catch(err => console.log(`Ошибка в index.js getCards при загрузке карточек ${err}`));
