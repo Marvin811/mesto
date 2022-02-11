@@ -2,6 +2,7 @@ export default class Card {
     constructor ({ cardData, handleCardClick }, cardSelector) {
         this._image = cardData.link;
         this._title = cardData.name;
+        this._id = cardData.id
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
     }
@@ -13,6 +14,9 @@ export default class Card {
             .querySelector('.elements__list-items')
             .cloneNode(true)
         return cardElement;
+    }
+    _getId() {
+        return this._id;
     }
 
     generate() {

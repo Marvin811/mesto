@@ -5,9 +5,10 @@ class Api {
     }
 
     _handleResponse = (response) => {
-        response.ok
-            ? response.json()
-            : Promise.reject(`Ошибка ${response.status}`)
+        if (response.ok) {
+            return response.json();
+        }
+        return Promise.reject(`Ошибка ${response.status}`);
     }
 
     getCards() {
@@ -23,16 +24,16 @@ class Api {
         })
     }
 
-    addMessage(data) {
-        return fetch(`${this._address}/messages`, {
+    addCard({place, photo}) {
+        return fetch(`${this._address}/cards`, {
             method: 'POST',
             headers: {
                 authorization: this._token,
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
-                user: data.user,
-                message: data.message
+                name: place ,
+                link: photo
             })
         }).then(this._handleResponse)
     }

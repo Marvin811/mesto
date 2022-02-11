@@ -17,6 +17,8 @@ import {
 } from '../utils/constants.js';
 import Api from "../components/Api.js";
 
+let section = null;
+
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1/cohort-35',
     token: '7e1e7983-5be2-461b-86d0-72ce046c0cdb'
@@ -48,11 +50,25 @@ function renderCard(cardData) {
     return card.generate();
 }
 
-const elementSumbitHandler = ({place, photo}) => {
-    const cardAdd = renderCard({name: place, link: photo});
-    section.addItem(cardAdd);
-    cardFormValidator.setInactiveButton();
+// const elementSumbitHandler = ({place, photo}) => {
+//     const cardAdd = renderCard({name: place, link: photo});
+//     section.addItem(cardAdd);
+//     cardFormValidator.setInactiveButton();
+// };
+// Добавление карточки
+const elementSumbitHandler = (cardData) => {
+    api.addCard({...cardData})
+        .then((cardData) => {
+            const cardAdd = renderCard({...cardData});
+            section.addItem(cardAdd);
+            cardFormValidator.setInactiveButton()
+    })
+    // const cardAdd = renderCard({name: place, link: photo});
+    // section.addItem(cardAdd);
+    // cardFormValidator.setInactiveButton();
+        .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
 };
+
 
 const profileSumbitHandler = ({name, info}) => {
     userInfo.setUserInfo({name, info});
@@ -78,7 +94,7 @@ cardFormValidator.enableValidation();
 //Загрузка карточек с сервера
 api.getCards()
     .then((cards) => {
-        const section = new Section({
+        section = new Section({
             items: cards,
             renderer: renderCard
         }, '.elements');
