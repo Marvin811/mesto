@@ -10,19 +10,35 @@ class Api {
         }
         return Promise.reject(`Ошибка ${response.status}`);
     }
+    getUser() {
+        return fetch(`${this._address}/users/me`, {
+            headers: {
+                authorization: this._token
+            }
+        }).then(this._handleResponse)
+    }
 
     getCards() {
         return fetch(`${this._address}/cards`, {
             headers: {
                 authorization: this._token
             }
-        }).then(response => {
-            if (response.ok) {
-                return response.json()
-            }
-            return Promise.reject(`Ошибка ${response.status}`)
-        })
+        }).then(this._handleResponse)
     }
+   editUser({name, info}) {
+       return fetch(`${this._address}/users/me`, {
+           method: 'PATCH',
+           headers: {
+               authorization: this._token,
+               'Content-type': 'application/json'
+           },
+           body: JSON.stringify({
+               name,
+               about: info
+           })
+       })
+           .then(this._handleResponse)
+   }
 
     addCard({place, photo}) {
         return fetch(`${this._address}/cards`, {

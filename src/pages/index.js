@@ -35,8 +35,9 @@ const cardFormValidator = new FormValidator(validationConfig, popupAddCard);
 const popupImage = new PopupWithImage('.popup_type_image');
 
 const userInfo = new UserInfo({
-    nameSelector: ".profile__user",
-    infoSelector: ".profile__author"
+    name: ".profile__user",
+    info: ".profile__author",
+    avatar: ".profile__avatar"
 });
 
 function renderCard(cardData) {
@@ -50,28 +51,28 @@ function renderCard(cardData) {
     return card.generate();
 }
 
-// const elementSumbitHandler = ({place, photo}) => {
-//     const cardAdd = renderCard({name: place, link: photo});
-//     section.addItem(cardAdd);
-//     cardFormValidator.setInactiveButton();
-// };
+
 // Добавление карточки
 const elementSumbitHandler = (cardData) => {
     api.addCard({...cardData})
         .then((cardData) => {
             const cardAdd = renderCard({...cardData});
-            section.addItem(cardAdd);
+            section.addItemUp(cardAdd);
             cardFormValidator.setInactiveButton()
     })
-    // const cardAdd = renderCard({name: place, link: photo});
-    // section.addItem(cardAdd);
-    // cardFormValidator.setInactiveButton();
         .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
 };
 
-
+//Изменение профиля
 const profileSumbitHandler = ({name, info}) => {
-    userInfo.setUserInfo({name, info});
+    api.editUser({name, info})
+        .then(user => {
+            userInfo.setUserInfo({
+                name: user.name, info: user.about
+            })
+        })
+                .then(() => popupImage.close())
+                .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
 };
 const popupProfile = new PopupWithFrom('.popup_type_add', elementSumbitHandler);
 const popupEdit = new PopupWithFrom('.popup_type_edit', profileSumbitHandler);
@@ -101,3 +102,15 @@ api.getCards()
         section.renderSection(cards);
     })
     .catch(err => console.log(`Ошибка в index.js getCards при загрузке карточек ${err}`));
+//Загрузка профиля с сервера
+api.getUser()
+.then((user) =>{
+    userInfo.setUserInfo({
+        name: user.name,
+        info: user.about,
+        avatar: user.avatar
+    });
+    userInfo.setUserAvatar(user.avatar);
+    userInfo.setUserId(id)
+})
+    .catch(err => alert(`Ошибка в index.js getUser при загрузке карточек ${err}`));

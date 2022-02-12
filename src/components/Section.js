@@ -13,6 +13,9 @@ class Section  {
     }
 
     addItem(element) {
+        this._selector.append(element);
+    }
+    addItemUp(element) {
         this._selector.prepend(element);
     }
 }
