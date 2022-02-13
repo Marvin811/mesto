@@ -53,6 +53,19 @@ class Api {
             })
         }).then(this._handleResponse)
     }
+    editAvatar(avatar) {
+        return fetch(`${this._address}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                avatar
+            )
+        })
+            .then(this._handleResponse)
+    }
 
     deleteMessage(id) {
         return fetch(`${this._address}/messages/${id}`, {

@@ -13,7 +13,9 @@ import {
     nameInput,
     jobInput,
     popupAddButtonElement,
-    popupAddCard
+    popupAddCard,
+    popupEditAvatar,
+    popupEditAvatarButton
 } from '../utils/constants.js';
 import Api from "../components/Api.js";
 
@@ -26,6 +28,7 @@ const api = new Api({
 
 const editFormValidator = new FormValidator(validationConfig, formEditElement);
 const cardFormValidator = new FormValidator(validationConfig, popupAddCard);
+const avatarFormValidator = new FormValidator(validationConfig, popupEditAvatar)
 
 // const section = new Section({
 //     items: initialCards,
@@ -74,8 +77,20 @@ const profileSumbitHandler = ({name, info}) => {
                 .then(() => popupImage.close())
                 .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
 };
+//Изменение аватара
+const avatarSumbitHandler = (avatar) => {
+    api.editAvatar(avatar)
+        .then(avatar => {
+            userInfo.setUserAvatar(avatar.avatar)
+            avatarFormValidator.setInactiveButton()
+        }).then(() => popupImage.close())
+        .catch(err => console.log(`Ошибка в index.js при редактировании аватар${err}`))
+}
+
 const popupProfile = new PopupWithFrom('.popup_type_add', elementSumbitHandler);
 const popupEdit = new PopupWithFrom('.popup_type_edit', profileSumbitHandler);
+const popupAvatar = new PopupWithFrom('.popup_type_avatar', avatarSumbitHandler);
+
 
 popupOpenButtonElement.addEventListener('click', () => {
     const user = userInfo.getUserInfo();
@@ -86,9 +101,14 @@ popupOpenButtonElement.addEventListener('click', () => {
 popupAddButtonElement.addEventListener('click', () => {
     popupProfile.open();
 });
+popupEditAvatarButton.addEventListener('click', () => {
+    popupAvatar.open();
+})
+
 
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 //section.renderSection();
 
@@ -111,6 +131,6 @@ api.getUser()
         avatar: user.avatar
     });
     userInfo.setUserAvatar(user.avatar);
-    userInfo.setUserId(id)
+    //userInfo.setUserId(id)
 })
     .catch(err => alert(`Ошибка в index.js getUser при загрузке карточек ${err}`));
