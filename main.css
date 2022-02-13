@@ -6,7 +6,7 @@
 .header__logo{margin:0 0 41px;padding:0;width:142px}@media screen and (max-width:879px){.header__logo{margin-bottom:31.7px;margin-left:27px;width:103px}}
 .button{background-color:transparent;background-position:50%;background-repeat:no-repeat;box-sizing:border-box;cursor:pointer;padding:0}.button:hover{opacity:.6;transition:opacity .7s ease}
 .profile{align-items:center;display:flex;margin:40px auto 0;max-width:880px}@media screen and (max-width:879px){.profile{flex-direction:column;margin-top:42px;max-width:282px}}
-.profile__avatar{border-radius:120px;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
+.profile__avatar{border-radius:120px;height:120px;-o-object-fit:cover;object-fit:cover;transition:opacity .4s ease-in;width:120px}.profile__avatar:hover{cursor:pointer;opacity:.2;outline-style:none}
 .profile__info{grid-column-gap:18px;grid-row-gap:16px;display:grid;margin:0 0 0 30px;max-width:336px;padding:0}@media screen and (max-width:879px){.profile__info{grid-column-gap:10px;grid-row-gap:7px;margin:0 auto;max-width:282px;padding:26px 19px 32px}}
 .profile__user{font-family:Inter,Arial,sans-serif;font-size:42px;font-style:normal;font-weight:500;line-height:56px;margin:0;max-width:920px;overflow:hidden;padding:0;text-overflow:ellipsis;transition:.5s ease-in-out;white-space:nowrap}@media screen and (max-width:879px){.profile__user{font-size:27px;line-height:121%;max-width:189px;text-align:center}}
 .profile__author{font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:121%;margin:0;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:879px){.profile__author{font-size:14px;line-height:17px;text-align:center}}
@@ -27,7 +27,7 @@
 .popup_is-opened{opacity:1;transition:visibility 0s,opacity .5s linear;visibility:visible}
 .popup__close-button{background-color:transparent;background-image:url(images/Close.039f1f5203f653b4bacd.svg);background-size:cover;border:none;cursor:pointer;height:20px;position:absolute;right:0;top:-36px;width:20px}@media (min-width:768px){.popup__close-button{height:32px;right:-36px;top:-40px;width:32px}}.popup__close:hover{opacity:.6}
 .popup__form{display:flex;flex-direction:column}
-.popup__title{font-size:18px;font-weight:900;line-height:22px;margin:0;padding:0 0 75px}@media (min-width:768px){.popup__title{font-size:24px;line-height:29px;padding-bottom:54px}}
+.popup__title{font-size:18px;font-weight:900;line-height:22px;margin:0;padding:0 0 75px}@media (min-width:768px){.popup__title{font-size:24px;line-height:29px;padding-bottom:51px}}
 .popup__input{border:0;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-weight:400;line-height:17px;outline:none;padding:0 0 8.098px;width:100%}.popup__input:last-child{margin-bottom:45px;padding:0}.popup__input.popup__input_type_error{border-color:red}
 .popup__save-button{background:#000;border:0;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-weight:400;line-height:22px;margin:15px 0 0;min-height:46px;min-width:238px;padding:0;width:100%}@media screen and (max-width:768px){.popup__save-button{font-size:14px;line-height:17px}}.popup__save-button:hover{opacity:.8}
 .popup__container-image{position:relative}
@@ -36,6 +36,8 @@
 .popup__error-visible{color:red;display:inline-block;font-size:12px;font-weight:400;height:30px;line-height:15px;margin:0 0 5px;padding:0}
 .popup__save-button_disabled{background:#fff;border:1px solid #e5e5e5;color:#e5e5e5;cursor:default}.popup__save-button_disabled:hover{opacity:1}
 .popup__input_type_error{border-bottom:1px solid red}
+.popup__remove-button{background:#000;border:0;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-weight:400;line-height:22px;margin:0;min-height:46px;min-width:238px;padding:0;width:100%}@media screen and (max-width:768px){.popup__remove-button{font-size:14px;line-height:17px}}.popup__remove-button:hover{opacity:.8}
+.profile__overlay{height:120px;width:120px}.profile__overlay:hover{background-image:url(images/editAvatar.93c771f5f8582261951d.png);background-position:50%;background-repeat:no-repeat}
 
 
 /*# sourceMappingURL=main.css.map*/
