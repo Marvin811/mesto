@@ -131,6 +131,6 @@ api.getUser()
         avatar: user.avatar
     });
     userInfo.setUserAvatar(user.avatar);
-    //userInfo.setUserId(id)
+
 })
     .catch(err => alert(`Ошибка в index.js getUser при загрузке карточек ${err}`));
