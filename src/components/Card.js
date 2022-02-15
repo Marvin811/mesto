@@ -1,10 +1,15 @@
 export default class Card {
-    constructor ({ cardData, handleCardClick }, cardSelector) {
+    constructor ({ cardData, userId, handleCardClick, handleDeleteCard, addLikeCard, deleteLikeCard}, cardSelector) {
         this._image = cardData.link;
         this._title = cardData.name;
-        this._id = cardData.id
+        this._id = cardData._id
+        this._ownerId = cardData.owner._id;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._userId = userId;
+        this._handleDeleteCard = handleDeleteCard;
+        //this._addLikeCard = addLikeCard;
+        //this._deleteLikeCard = deleteLikeCard;
     }
 
     _getTemplate() {
@@ -13,10 +18,14 @@ export default class Card {
             .content
             .querySelector('.elements__list-items')
             .cloneNode(true)
+
+
         return cardElement;
     }
-    _getId() {
-        return this._id;
+    _checkingCards() {
+        if(this._ownerId !== this._userId){
+            this._delButton.classList.add('elements__delete-button_none')
+        }
     }
 
     generate() {
@@ -27,11 +36,12 @@ export default class Card {
         cardImage.alt = this._title;
         cardTitle.textContent = this._title;
         this._setEventListeners();
+        this._checkingCards();
 
         return this._element;
     }
 
-    _handleDelete = () => {
+    deleteCardClass = () => {
         this._element.remove();
     }
 
@@ -41,8 +51,8 @@ export default class Card {
     }
 
     _setEventListeners() {
-        const delButton = this._element.querySelector('.elements__delete-button');
-        delButton.addEventListener('click', this._handleDelete);
+        this._delButton = this._element.querySelector('.elements__delete-button');
+        this._delButton.addEventListener('click', () => this._handleDeleteCard(this));
         const likeButton = this._element.querySelector('.elements__like-button');
         likeButton.addEventListener('click', this._handleLike);
         const cardImage = this._element.querySelector('.elements__image');
