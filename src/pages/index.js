@@ -7,7 +7,6 @@ import PopupWithFrom from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import {
     validationConfig,
-    //initialCards,
     formEditElement,
     popupOpenButtonElement,
     nameInput,
@@ -19,6 +18,10 @@ import {
 } from '../utils/constants.js';
 import Api from "../components/Api.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js";
+import {
+    addSave,
+    removeSave
+} from "../utils/utils.js";
 
 let section = null;
 
@@ -63,18 +66,24 @@ function renderCard(cardData) {
 
 
 // Добавление карточки
-const elementSumbitHandler = (cardData) => {
+const elementSumbitHandler = (cardData, text) => {
+    addSave(text);
     api.addCard({...cardData})
         .then((cardData) => {
             const cardAdd = renderCard({...cardData});
             section.addItemUp(cardAdd);
             cardFormValidator.setInactiveButton()
         })
+        .then(() => popupImage.close())
         .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
+        .finally(() => {
+            removeSave(text);
+        });
 };
 
 //Изменение профиля
-const profileSumbitHandler = ({name, info}) => {
+const profileSumbitHandler = ({name, info}, text) => {
+    addSave(text);
     api.editUser({name, info})
         .then(user => {
             userInfo.setUserInfo({
@@ -83,15 +92,20 @@ const profileSumbitHandler = ({name, info}) => {
         })
         .then(() => popupImage.close())
         .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
+        .finally(() =>
+            removeSave(text));
 };
 //Изменение аватара
-const avatarSumbitHandler = (avatar) => {
+const avatarSumbitHandler = (avatar, text) => {
+    addSave(text);
     api.editAvatar(avatar)
         .then(avatar => {
             userInfo.setUserAvatar(avatar.avatar)
             avatarFormValidator.setInactiveButton()
         }).then(() => popupImage.close())
         .catch(err => console.log(`Ошибка в index.js при редактировании аватар${err}`))
+        .finally(() =>
+            removeSave(text));
 }
 //Закрытие попапа удаления карточки
 const closePopupDeleteCard = () => popupDeleteCard.close();

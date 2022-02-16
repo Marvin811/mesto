@@ -5,6 +5,7 @@ export default class PopupWithForm extends Popup {
         super(selector);
         this._handleFormSumbit = handleFormSumbit;
         this._elementForm = this._popup.querySelector('.popup__form');
+        this._buttonSub = this._popup.querySelector('.popup__save-button')
     }
 
     _getInputValues() {
@@ -28,7 +29,7 @@ export default class PopupWithForm extends Popup {
 
     _handleSubmit = (evt) => {
         evt.preventDefault();
-        this._handleFormSumbit(this._getInputValues());
+        this._handleFormSumbit(this._getInputValues(), this._buttonSub);
         this._elementForm.reset();
         this.close();
     }
