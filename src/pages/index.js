@@ -41,16 +41,23 @@ const userInfo = new UserInfo({
 
 function renderCard(cardData) {
     const card = new Card({
-            cardData: cardData,
-            userId: userInfo._id,
-            handleCardClick: () => {
-                popupImage.open(cardData.name, cardData.link);
-            },
-            handleDeleteCard: (cardData) => {
-                popupDeleteCard.open();
-                popupDeleteCard.setSumbitAction(() => apiDeleteCard(cardData))
+        cardData: cardData,
+        userId: userInfo._id,
+        handleCardClick: () => {
+            popupImage.open(cardData.name, cardData.link);
+        },
+        handleDeleteCard: (cardData) => {
+            popupDeleteCard.open();
+            popupDeleteCard.setSumbitAction(() => apiDeleteCard(cardData))
+        },
+        addLikeCard: (cardData) => {
+            return api.addLike(cardData)
+        },
+        deleteLikeCard: (cardData) => {
+            return api.deleteLike(cardData)
         }
-        }, '#cardTemplate');
+    }, '#cardTemplate');
+
     return card.generate();
 }
 
@@ -62,7 +69,7 @@ const elementSumbitHandler = (cardData) => {
             const cardAdd = renderCard({...cardData});
             section.addItemUp(cardAdd);
             cardFormValidator.setInactiveButton()
-    })
+        })
         .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
 };
 
@@ -74,8 +81,8 @@ const profileSumbitHandler = ({name, info}) => {
                 name: user.name, info: user.about
             })
         })
-                .then(() => popupImage.close())
-                .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
+        .then(() => popupImage.close())
+        .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
 };
 //Изменение аватара
 const avatarSumbitHandler = (avatar) => {
@@ -90,15 +97,12 @@ const avatarSumbitHandler = (avatar) => {
 const closePopupDeleteCard = () => popupDeleteCard.close();
 //Попап удаления карточки
 
-
-
-
-
 const popupProfile = new PopupWithFrom('.popup_type_add', elementSumbitHandler);
 const popupEdit = new PopupWithFrom('.popup_type_edit', profileSumbitHandler);
 const popupAvatar = new PopupWithFrom('.popup_type_avatar', avatarSumbitHandler);
 const popupDeleteCard = new PopupWithConfirm('.popup_type_remove', {
-    clickHandleCallBack: closePopupDeleteCard});
+    clickHandleCallBack: closePopupDeleteCard
+});
 
 popupOpenButtonElement.addEventListener('click', () => {
     const user = userInfo.getUserInfo();
@@ -130,15 +134,15 @@ const apiDeleteCard = (cardData) => {
 
 //Загрузка профиля с сервера
 api.getUser()
-.then((user) =>{
-    userInfo.setUserInfo({
-        name: user.name,
-        info: user.about,
-        avatar: user.avatar
-    });
-    userInfo.setUserAvatar(user.avatar);
-    userInfo.setUserId(user._id)
-})
+    .then((user) => {
+        userInfo.setUserInfo({
+            name: user.name,
+            info: user.about,
+            avatar: user.avatar
+        });
+        userInfo.setUserAvatar(user.avatar);
+        userInfo.setUserId(user._id)
+    })
     .then(() => {
         //Загрузка карточек с сервера
         api.getCards()
