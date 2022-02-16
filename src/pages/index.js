@@ -30,9 +30,40 @@ const api = new Api({
     token: '7e1e7983-5be2-461b-86d0-72ce046c0cdb'
 })
 
-const editFormValidator = new FormValidator(validationConfig, formEditElement);
-const cardFormValidator = new FormValidator(validationConfig, popupAddCard);
-const avatarFormValidator = new FormValidator(validationConfig, popupEditAvatar)
+const apiDeleteCard = (cardData) => {
+    api.deleteCard(cardData._id)
+        .then(() => cardData.deleteCardClass())
+        .then(() => closePopupDeleteCard())
+        .catch(err => console.log(`Ошибка в index.js DeleteCard при загрузке карточек ${err}`));
+}
+
+
+//Загрузка профиля с сервера
+api.getUser()
+    .then((user) => {
+        userInfo.setUserInfo({
+            name: user.name,
+            info: user.about,
+            avatar: user.avatar
+        });
+        userInfo.setUserAvatar(user.avatar);
+        userInfo.setUserId(user._id)
+    })
+    .then(() => {
+        //Загрузка карточек с сервера
+        api.getCards()
+            .then((cards) => {
+                section = new Section({
+                    items: cards,
+                    renderer: renderCard
+                }, '.elements');
+                section.renderSection(cards);
+            })
+            .catch(err => console.log(`Ошибка в index.js getCards при загрузке карточек ${err}`));
+    })
+    .catch(err => alert(`Ошибка в index.js getUser при загрузке карточек ${err}`));
+
+
 
 const popupImage = new PopupWithImage('.popup_type_image');
 
@@ -111,6 +142,10 @@ const avatarSumbitHandler = (avatar, text) => {
 const closePopupDeleteCard = () => popupDeleteCard.close();
 //Попап удаления карточки
 
+const editFormValidator = new FormValidator(validationConfig, formEditElement);
+const cardFormValidator = new FormValidator(validationConfig, popupAddCard);
+const avatarFormValidator = new FormValidator(validationConfig, popupEditAvatar);
+
 const popupProfile = new PopupWithFrom('.popup_type_add', elementSumbitHandler);
 const popupEdit = new PopupWithFrom('.popup_type_edit', profileSumbitHandler);
 const popupAvatar = new PopupWithFrom('.popup_type_avatar', avatarSumbitHandler);
@@ -135,38 +170,3 @@ popupEditAvatarButton.addEventListener('click', () => {
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
-
-//section.renderSection();
-
-const apiDeleteCard = (cardData) => {
-    api.deleteCard(cardData._id)
-        .then(() => cardData.deleteCardClass())
-        .then(() => closePopupDeleteCard())
-        .catch(err => console.log(`Ошибка в index.js DeleteCard при загрузке карточек ${err}`));
-}
-
-
-//Загрузка профиля с сервера
-api.getUser()
-    .then((user) => {
-        userInfo.setUserInfo({
-            name: user.name,
-            info: user.about,
-            avatar: user.avatar
-        });
-        userInfo.setUserAvatar(user.avatar);
-        userInfo.setUserId(user._id)
-    })
-    .then(() => {
-        //Загрузка карточек с сервера
-        api.getCards()
-            .then((cards) => {
-                section = new Section({
-                    items: cards,
-                    renderer: renderCard
-                }, '.elements');
-                section.renderSection(cards);
-            })
-            .catch(err => console.log(`Ошибка в index.js getCards при загрузке карточек ${err}`));
-    })
-    .catch(err => alert(`Ошибка в index.js getUser при загрузке карточек ${err}`));
