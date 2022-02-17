@@ -105,7 +105,7 @@ const elementSumbitHandler = (cardData, text) => {
             section.addItemUp(cardAdd);
             cardFormValidator.setInactiveButton()
         })
-        .then(() => popupImage.close())
+        .then(() => popupProfile.close())
         .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
         .finally(() => {
             removeSave(text);
@@ -121,7 +121,7 @@ const profileSumbitHandler = ({name, info}, text) => {
                 name: user.name, info: user.about
             })
         })
-        .then(() => popupImage.close())
+        .then(() => popupEdit.close())
         .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
         .finally(() =>
             removeSave(text));
@@ -133,7 +133,7 @@ const avatarSumbitHandler = (avatar, text) => {
         .then(avatar => {
             userInfo.setUserAvatar(avatar.avatar)
             avatarFormValidator.setInactiveButton()
-        }).then(() => popupImage.close())
+        }).then(() => popupAvatar.close())
         .catch(err => console.log(`Ошибка в index.js при редактировании аватар${err}`))
         .finally(() =>
             removeSave(text));

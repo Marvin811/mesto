@@ -17,14 +17,14 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
-    _setEventListeners() {
+    setEventListeners() {
         this._elementForm.addEventListener('submit', this._handleSubmit);
-        super._setEventListeners();
+        super.setEventListeners();
     }
 
-    _removeListener() {
+    removeListener() {
         this._elementForm.removeEventListener('sumbit', this._handleSubmit);
-        super._removeListener();
+        super.removeListener();
     }
 
     _handleSubmit = (evt) => {
@@ -35,7 +35,7 @@ export default class PopupWithForm extends Popup {
     }
 
     close() {
-        this._removeListener();
+        this.removeListener();
         super.close();
     }
 

@@ -13,17 +13,17 @@ class Popup {
     }
     close() {
         this._popup.classList.remove('popup_is-opened');
-        this._removeListener()
+        this.removeListener()
     }
-    _setEventListeners() {
+    setEventListeners() {
         document.addEventListener('keydown', this._handleEscClose);
         this._popup.addEventListener('click', this._handleClose);
     }
     open() {
         this._popup.classList.add("popup_is-opened")
-        this._setEventListeners();
+        this.setEventListeners();
     }
-    _removeListener() {
+    removeListener() {
         document.removeEventListener('keydown', this._handleEscClose);
         this._popup.removeEventListener('click', this._handleClose);
     }
