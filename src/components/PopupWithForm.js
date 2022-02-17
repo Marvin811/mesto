@@ -31,7 +31,6 @@ export default class PopupWithForm extends Popup {
         evt.preventDefault();
         this._handleFormSumbit(this._getInputValues(), this._buttonSub);
         this._elementForm.reset();
-        this.close();
     }
 
     close() {
